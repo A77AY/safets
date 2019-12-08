@@ -1,0 +1,30 @@
+{
+  "name": "@safets/get",
+  "version": "0.1.0",
+  "description": "Get TypeScript Util",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "build": "rimraf dist & tsc",
+    "gen:get": "ts-node src/get.generators.ts",
+    "gen:sget": "ts-node src/sget.generators.ts",
+    "test": "jasmine --reporter=jasmine-console-reporter --config=jasmine.json",
+    "test:watch": "nodemon -e ts --watch src --exec \"npm test\""
+  },
+  "author": "Rinat Arsaev <krickray@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jasmine": "^3.5.0",
+    "@types/node": "^12.12.14",
+    "conditional-type-checks": "^1.0.5",
+    "jasmine": "^3.5.0",
+    "jasmine-console-reporter": "^3.1.0",
+    "nodemon": "^2.0.1",
+    "rimraf": "^3.0.0",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.3"
+  }
+}
