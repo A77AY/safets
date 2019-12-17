@@ -8,7 +8,7 @@ Gets the value at path of object.
 
 |                 | Right path                              | Wrong path    | Language tips              | JS specific paths                              | Size                               |
 | --------------- | --------------------------------------- | ------------- | -------------------------- | ---------------------------------------------- | ---------------------------------- |
-| **@safets/get** | ➕ return right type                    | ➕ **error**  | ➕/➖ **with inline path** | ➕ **unnecessary for TS**                      | ➕ **without JS specific options** |
+| **@safets/get** | ➕ **return right type**                | ➕ **error**  | ➕/➖ **with inline path** | ➕ **unnecessary for TS**                      | ➕ **without JS specific options** |
 | lodash.get      | ➕/➖ return right type with array path | ➖ return any | ➖ not worked with array   | ➕/➖ has unnecessary for TS JS specific paths | ➖ has JS specific options         |
 
 ## Installation
@@ -164,3 +164,11 @@ Parsinng function body (most likely this option will remain experimental):
 
     -   Use `get` without default value for `undefined` default value
     -   Use `getOrNull` without default value for `null` default value
+
+## For contributers
+
+### Publish
+
+```sh
+npm publish --access public
+```

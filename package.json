@@ -1,6 +1,6 @@
 {
   "name": "@safets/get",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Get TypeScript Util",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -8,6 +8,7 @@
     "dist/**/*"
   ],
   "scripts": {
+    "prepublish": "npm run build",
     "build": "rimraf dist & tsc",
     "gen:get": "ts-node src/get.generators.ts",
     "gen:sget": "ts-node src/sget.generators.ts",
