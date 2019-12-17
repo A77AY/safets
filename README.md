@@ -4,12 +4,12 @@
 
 Gets the value at path of object.
 
-💡 Inspired by lodash, but rethought & **has cool types**.
+💡 Inspired by lodash, but rethought and **has awesome types**.
 
-|                 | Right path                              | Wrong path    | Language tips              | JS specific paths                              | Size                               |
-| --------------- | --------------------------------------- | ------------- | -------------------------- | ---------------------------------------------- | ---------------------------------- |
-| **@safets/get** | ➕ **return right type**                | ➕ **error**  | ➕/➖ **with inline path** | ➕ **unnecessary for TS**                      | ➕ **without JS specific options** |
-| lodash.get      | ➕/➖ return right type with array path | ➖ return any | ➖ not worked with array   | ➕/➖ has unnecessary for TS JS specific paths | ➖ has JS specific options         |
+|                 | Right path                              | Wrong path    | Language tips              | JS specific path (`string`)                | Size                                     |
+| --------------- | --------------------------------------- | ------------- | -------------------------- | ------------------------------------------ | ---------------------------------------- |
+| **@safets/get** | ➕ **return right type**                | ➕ **error**  | ➕/➖ **with inline path** | ➕ **unnecessary for TS**                  | ➕ **small, without JS specific option** |
+| lodash.get      | ➕/➖ return right type with array path | ➖ return any | ➖ not worked with array   | ➖ has unnecessary for TS JS specific path | ➖ big, has JS specific option           |
 
 ## Installation
 
@@ -19,7 +19,7 @@ npm i -S @safets/get
 
 ## Usage
 
-Complete object:
+Fullfilled object:
 
 ```ts
 const obj = { a: [{ b: 3 as const }] };
@@ -31,7 +31,7 @@ get(obj, "a", 0, "b"); // 3: 3 | undefined
 get(obj, ["a", 0], "default"); // {b: 3}:  {b: 3} | 'default'
 ```
 
-Incomplete object:
+Unfilled object:
 
 ```ts
 const partialObj = ({ a: [] } as any) as { a: [{ b: 3 }] };
@@ -43,7 +43,7 @@ get(partialObj, "a", 0, "b"); // undefined: 3 | undefined
 get(partialObj, ["a", 0], "default"); // 'default': 'default' | {b: 3}
 ```
 
-With default:
+Unfilled object with default value:
 
 ```ts
 const partialObj = ({ a: [] } as any) as { a: [{ b: 3 }] };
@@ -57,10 +57,15 @@ getOrNull(partialObj, "a", 0, "b"); // null:  3 | null
 
 ## Documentation
 
+```ts
+// Keys
+type K = string | number | symbol;
+```
+
 ### Inline
 
 ```ts
-get(object: any, ...path: (string | number | symbol)[], defaultValue?: {default: any});
+get(object: O, ...path: K[], options?: {default: D}): O[K0]... | D;
 ```
 
 -   ➕ Conciseness
@@ -70,7 +75,7 @@ get(object: any, ...path: (string | number | symbol)[], defaultValue?: {default:
 ### By array
 
 ```ts
-get(default: any)(object: any, ...path: (string | number | symbol)[]);
+get(default: O)(object: any, ...path: K[]): O[K0]... | D;
 ```
 
 -   ➕ Simple use of default value
@@ -83,39 +88,37 @@ Can be combined with any of the options:
 -   Inline:
 
     ```ts
-    get(default: any)(object: any, ...path: (string | number | symbol)[]);
+    get(default: D)(object: O, ...path: K[]): O[K0]... | D;
     ```
 
 -   By array:
 
     ```ts
-    get(default: any)(object: any, ...path: (string | number | symbol)[]);
+    get(default: D)(object: O, path: K[]): O[K0]... | D;
     ```
 
-With default `null`:
+With default value `null`:
 
 ```ts
-getOrNull(object: any, ...path: (string | number | symbol)[]);
+getOrNull(object: any, ...path: K[]);
 ```
 
 ### ~~Strict get~~
 
-**🚫 not implemented, ⚠️ experemental**
+**🚫 not implemented**
 
 Strict version of `get` ~~(better use it)~~.
 
 ### ~~By object~~
 
-**🚫 not implemented, ⚠️ experemental**
+**🚫 not implemented, ⚠️ perhaps it makes no sense to implement**
 
 -   ➕ Simple use of default value
 -   ➖ Language tips don't work
 
-It seems pointless implementirovanie.
-
 ### ~~By function~~
 
-**🚫 not implemented, ⚠️ experemental**
+**🚫 not implemented, ⚠️ perhaps it makes no sense to implement**
 
 Error handling:
 
@@ -124,23 +127,25 @@ Error handling:
 -   ➕ No maximum length limit
 -   ➖ Catch is very slow
 
-Parsinng function body (most likely this option will remain experimental):
+**🚫 not implemented, ⚠️ perhaps will remain experimental**
+
+Parsing function body:
 
 -   ➕ Most concise
 -   ➕ Language tips work
 -   ➕ No maximum length limit
 -   ➕ Fast
--   ➖ Dangerous (not production yet)
+-   ➖ Dangerous (not for production)
 
 ### ~~Proxy~~
 
-**🚫 not implemented, ⚠️ experemental**
+**🚫 not implemented**
 
 -   ➕ Most concise
 -   ➕ Language tips work
 -   ➕ No maximum length limit
 -   ➕ Fast
--   ➖ Does not work on older browsers
+-   ➖ Doesn't work on older browsers (IE11 and older)
 
 ## Arguments
 
@@ -148,27 +153,19 @@ Parsinng function body (most likely this option will remain experimental):
 
     The object through which passes.
 
-1.  `path: (string | number | symbol) | (string | number | symbol)[]`
+1.  `path: (string | number | symbol)` / `Array<string | number | symbol>`
 
     Listing object properties in depth.
 
     Limitations:
 
-    -   maximum depth: 20 (no limitation for "by function" version).
+    -   maximum depth: 20 (no limitation for "by function" and "proxy").
 
-1.  `defaultValue: any | {default: any}`
+1.  `defaultValue: any` / `options: {default: any}`
 
     Default value.
 
-    Don't pass `undefined` and `null` default value directly because they are cast to `any` (applies only to `get`)
+    Don't pass `undefined` and `null` default value directly because they are cast to `any`.
 
-    -   Use `get` without default value for `undefined` default value
-    -   Use `getOrNull` without default value for `null` default value
-
-## For contributers
-
-### Publish
-
-```sh
-npm publish --access public
-```
+    -   Use `get` without default value for default `undefined`.
+    -   Use `getOrNull` without default value for default `null`.
