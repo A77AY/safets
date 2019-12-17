@@ -6,10 +6,10 @@ Gets the value at path of object.
 
 💡 Inspired by lodash, but rethought and **has awesome types**.
 
-|                 | Right path                              | Wrong path    | Language tips              | JS specific path (`string`)                | Size                                     |
-| --------------- | --------------------------------------- | ------------- | -------------------------- | ------------------------------------------ | ---------------------------------------- |
-| **@safets/get** | ➕ **return right type**                | ➕ **error**  | ➕/➖ **with inline path** | ➕ **unnecessary for TS**                  | ➕ **small, without JS specific option** |
-| lodash.get      | ➕/➖ return right type with array path | ➖ return any | ➖ not worked with array   | ➖ has unnecessary for TS JS specific path | ➖ big, has JS specific option           |
+|                 | Right path                              | Wrong path    | Language tips              | JS specific path (`string`)                | Bundle size                                                |
+| --------------- | --------------------------------------- | ------------- | -------------------------- | ------------------------------------------ | ---------------------------------------------------------- |
+| **@safets/get** | ➕ **return right type**                | ➕ **error**  | ➕/➖ **with inline path** | ➕ **unnecessary for TS**                  | ➕ **1.2kB @safets/get@0.1.3, without JS specific option** |
+| lodash.get      | ➕/➖ return right type with array path | ➖ return any | ➖ not worked with array   | ➖ has unnecessary for TS JS specific path | ➖ 4.4kB lodash.get@4.4.2, has JS specific option          |
 
 ## Installation
 
