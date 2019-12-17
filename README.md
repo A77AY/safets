@@ -8,10 +8,10 @@ Gets the value at path of object.
 
 💡 Inspired by lodash, but rethought and **has awesome types**.
 
-|                 | Right path                              | Wrong path    | Language tips              | JS specific path (`string`)                | Bundle size                                                                                   |
-| --------------- | --------------------------------------- | ------------- | -------------------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------- |
-| **@safets/get** | ➕ **return right type**                | ➕ **error**  | ➕/➖ **with inline path** | ➕ **unnecessary for TS**                  | ➕ ![](https://badgen.net/bundlephobia/min/@safets/get?label=) **without JS specific option** |
-| lodash.get      | ➕/➖ return right type with array path | ➖ return any | ➖ not worked with array   | ➖ has unnecessary for TS JS specific path | ➖ ![](https://badgen.net/bundlephobia/min/lodash.get?label=) has JS specific option          |
+|                 | Right path                              | Wrong path    | Language tips              | JS specific path (`string`)                | Bundle size                                                    |
+| --------------- | --------------------------------------- | ------------- | -------------------------- | ------------------------------------------ | -------------------------------------------------------------- |
+| **@safets/get** | ➕ **return right type**                | ➕ **error**  | ➕/➖ **with inline path** | ➕ **unnecessary for TS**                  | ➕ ![](https://badgen.net/bundlephobia/min/@safets/get?label=) |
+| lodash.get      | ➕/➖ return right type with array path | ➖ return any | ➖ not worked with array   | ➖ has unnecessary for TS JS specific path | ➖ ![](https://badgen.net/bundlephobia/min/lodash.get?label=)  |
 
 ## Installation
 
