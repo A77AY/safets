@@ -1,7 +1,14 @@
 {
   "name": "@safets/get",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Get TypeScript Util",
+  "keywords": [
+    "get",
+    "util",
+    "TS",
+    "TypeScript",
+    "lodash"
+  ],
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
@@ -19,11 +26,11 @@
   "license": "MIT",
   "devDependencies": {
     "@types/jasmine": "^3.5.0",
-    "@types/node": "^12.12.14",
+    "@types/node": "^12.12.20",
     "conditional-type-checks": "^1.0.5",
     "jasmine": "^3.5.0",
     "jasmine-console-reporter": "^3.1.0",
-    "nodemon": "^2.0.1",
+    "nodemon": "^2.0.2",
     "rimraf": "^3.0.0",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.3"
